@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19EA964F-C9B4-4C1A-81FD-7F70E85C259F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TPFinalNivel2_RuizDiaz</RootNamespace>
+    <AssemblyName>Punto De Venta</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\usu01\Desktop\TANO ARCHIVS\CARPETA DE INSTALACION\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>microsoft_azure_logo_icon_170956.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>36DE76A08F237B7BA5C2980396364B02D1295291</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TPFinalNivel2_RuizDiaz_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgregarMetodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarMetodo.Designer.cs">
+      <DependentUpon>AgregarMetodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaArticulo.Designer.cs">
+      <DependentUpon>AltaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="altaCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="altaCategorias.Designer.cs">
+      <DependentUpon>altaCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaMarcas.Designer.cs">
+      <DependentUpon>AltaMarcas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cambiar Precio Por Marca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cambiar Precio Por Marca.Designer.cs">
+      <DependentUpon>Cambiar Precio Por Marca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarProveedor.Designer.cs">
+      <DependentUpon>CargarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configurar_Impresora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configurar_Impresora.Designer.cs">
+      <DependentUpon>Configurar_Impresora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarCompraProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarCompraProveedores.Designer.cs">
+      <DependentUpon>ConsultarCompraProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CUANTO SE VENDIÓ POR PRODUCTO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CUANTO SE VENDIÓ POR PRODUCTO.Designer.cs">
+      <DependentUpon>CUANTO SE VENDIÓ POR PRODUCTO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ENTRADA_DE_MERCADERIA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ENTRADA_DE_MERCADERIA.Designer.cs">
+      <DependentUpon>ENTRADA_DE_MERCADERIA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FechaInformeDeVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FechaInformeDeVentas.Designer.cs">
+      <DependentUpon>FechaInformeDeVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPrincipal.Designer.cs">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formas de pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formas de pago.Designer.cs">
+      <DependentUpon>formas de pago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCancelaroBajarDeuda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCancelaroBajarDeuda.Designer.cs">
+      <DependentUpon>frmCancelaroBajarDeuda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHistorialDelDeudor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHistorialDelDeudor.Designer.cs">
+      <DependentUpon>FrmHistorialDelDeudor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNuevoClientecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNuevoClientecs.Designer.cs">
+      <DependentUpon>frmNuevoClientecs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GastosVarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GastosVarios.Designer.cs">
+      <DependentUpon>GastosVarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaDeudores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaDeudores.Designer.cs">
+      <DependentUpon>ListaDeudores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagarAProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagarAProveedor.Designer.cs">
+      <DependentUpon>PagarAProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="REGISTRAR MERCADERIA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REGISTRAR MERCADERIA.Designer.cs">
+      <DependentUpon>REGISTRAR MERCADERIA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REGISTRADORA DE COMPRAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="REGISTRADORA DE COMPRAS.Designer.cs">
+      <DependentUpon>REGISTRADORA DE COMPRAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TOTAL A COBRAR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TOTAL A COBRAR.Designer.cs">
+      <DependentUpon>TOTAL A COBRAR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FIADO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FIADO.Designer.cs">
+      <DependentUpon>FIADO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VENTAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VENTAS.Designer.cs">
+      <DependentUpon>VENTAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaTotalDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaTotalDia.Designer.cs">
+      <DependentUpon>VentaTotalDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerDetalleCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerDetalleCompra.Designer.cs">
+      <DependentUpon>VerDetalleCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerDetalles.Designer.cs">
+      <DependentUpon>VerDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerInformeEnPantalla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerInformeEnPantalla.Designer.cs">
+      <DependentUpon>VerInformeEnPantalla.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AgregarMetodo.resx">
+      <DependentUpon>AgregarMetodo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaArticulo.resx">
+      <DependentUpon>AltaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="altaCategorias.resx">
+      <DependentUpon>altaCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaMarcas.resx">
+      <DependentUpon>AltaMarcas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cambiar Precio Por Marca.resx">
+      <DependentUpon>Cambiar Precio Por Marca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarProveedor.resx">
+      <DependentUpon>CargarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configurar_Impresora.resx">
+      <DependentUpon>Configurar_Impresora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarCompraProveedores.resx">
+      <DependentUpon>ConsultarCompraProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CUANTO SE VENDIÓ POR PRODUCTO.resx">
+      <DependentUpon>CUANTO SE VENDIÓ POR PRODUCTO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ENTRADA_DE_MERCADERIA.resx">
+      <DependentUpon>ENTRADA_DE_MERCADERIA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FechaInformeDeVentas.resx">
+      <DependentUpon>FechaInformeDeVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPrincipal.resx">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formas de pago.resx">
+      <DependentUpon>formas de pago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCancelaroBajarDeuda.resx">
+      <DependentUpon>frmCancelaroBajarDeuda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHistorialDelDeudor.resx">
+      <DependentUpon>FrmHistorialDelDeudor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNuevoClientecs.resx">
+      <DependentUpon>frmNuevoClientecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GastosVarios.resx">
+      <DependentUpon>GastosVarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaDeudores.resx">
+      <DependentUpon>ListaDeudores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagarAProveedor.resx">
+      <DependentUpon>PagarAProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="REGISTRAR MERCADERIA.resx">
+      <DependentUpon>REGISTRAR MERCADERIA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="REGISTRADORA DE COMPRAS.resx">
+      <DependentUpon>REGISTRADORA DE COMPRAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TOTAL A COBRAR.resx">
+      <DependentUpon>TOTAL A COBRAR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FIADO.resx">
+      <DependentUpon>FIADO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VENTAS.resx">
+      <DependentUpon>VENTAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentaTotalDia.resx">
+      <DependentUpon>VentaTotalDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerDetalleCompra.resx">
+      <DependentUpon>VerDetalleCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerDetalles.resx">
+      <DependentUpon>VerDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerInformeEnPantalla.resx">
+      <DependentUpon>VerInformeEnPantalla.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="TPFinalNivel2_RuizDiaz_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{e70522af-135a-40c1-be01-a1477728a9ea}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio}\Negocios.csproj">
+      <Project>{fe4ca455-1f4e-4bd9-98ce-49c7e3915603}</Project>
+      <Name>Negocios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="microsoft_azure_logo_icon_170956.ico" />
+    <None Include="Resources\icons8-expense-24.png" />
+    <None Include="Resources\icons8-supplier-24.png" />
+    <None Include="Resources\icons8-multifunction-printer-50.png" />
+    <None Include="Resources\icons8-enter-67.png" />
+    <None Include="Resources\money_cash_currency_finance_bank_icon_192201.png" />
+    <None Include="Resources\barcode_icon-icons.com_73665.png" />
+    <None Include="Resources\shopping-cart-verified-symbol_icon-icons.com_56123.png" />
+    <None Include="Resources\delete_outline_icon_148544 %281%29.png" />
+    <None Include="Resources\4115230-cancel-close-cross-delete_114048.png" />
+    <None Include="Resources\creditcards_119665.png" />
+    <None Include="Resources\money-bills-and-coins-stack_icon-icons.com_56169.png" />
+    <None Include="Resources\article-marketing_icon-icons.com_53806.png" />
+    <None Include="Resources\3925411-cashbox-cashier-shop-icon_111535.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,47 @@
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe.config
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe.manifest
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.application
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.pdb
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Dominio.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Negocio}.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Dominio.pdb
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Negocio}.pdb
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csprojAssemblyReference.cache
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.BtnAgregar.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.AltaArticulo.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.altaCategorias.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.AltaMarcas.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Cambiar_Precio_Por_Marca.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.CargarProveedor.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Configurar_Impresora.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ConsultarCompraProveedores.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.CUANTO_SE_VENDIÓ_POR_PRODUCTO.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ENTRADA_DE_MERCADERIA.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FechaInformeDeVentas.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Form1.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FormularioPrincipal.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.formas_de_pago.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.frmCancelaroBajarDeuda.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.DetalleDeCompra.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.frmNuevoClientecs.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.GastosVarios.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ListaDeudores.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.PagarAProveedor.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.PAGAR_A_PROVEEDOR.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Properties.Resources.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.REGISTRADORA_DE_COMPRAS.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.TOTAL_A_COBRAR.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FIADO.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Venta_Por_Venta.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VentaTotalDia.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerDetalleCompra.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerDetalles.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerInformeEnPantalla.resources
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.GenerateResource.cache
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.CoreCompileInputs.cache
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe.manifest
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.application
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.CopyComplete
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.pdb

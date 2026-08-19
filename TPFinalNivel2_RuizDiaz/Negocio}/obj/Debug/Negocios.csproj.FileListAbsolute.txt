@@ -1,0 +1,14 @@
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Negocio}.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Negocio}.pdb
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Dominio.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Dominio.pdb
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.xml
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csprojAssemblyReference.cache
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.CoreCompileInputs.cache
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.CopyComplete
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.dll
+C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.pdb
