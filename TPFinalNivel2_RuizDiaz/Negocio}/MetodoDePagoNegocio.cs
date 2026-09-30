@@ -85,7 +85,7 @@ namespace Negocio_
 
             try
             {
-                datos.SetearConsulta("INSERT INTO metodos_de_pago (metodo_pago, porcentaje) VALUES (@metodo_pago, @porcentaje, @fondo_inicial)");
+                datos.SetearConsulta("INSERT INTO metodos_de_pago (metodo_pago, porcentaje) VALUES (@metodo_pago, @porcentaje)");
                 datos.setearParametro("@metodo_pago", nuevo.MetodoPago);
                 datos.setearParametro("@porcentaje", nuevo.porcentaje);
                 
