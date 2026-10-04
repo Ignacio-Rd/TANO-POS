@@ -29,7 +29,7 @@ namespace Negocio_
                 datos.SetearConsulta(
                     "SELECT VP.Fecha, VP.Producto, VP.Cantidad, VP.PrecioUnitario, VP.ImporteLinea " +
                     "FROM Venta_Por_Producto VP " +
-                    "INNER JOIN Ventas V ON V.IdVenta = VP.IdVenta"
+                    "INNER JOIN Ventas V ON V.Id = VP.IdVenta"
                 );
                 datos.EjecutarLectura();
 
