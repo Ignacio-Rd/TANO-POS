@@ -29,7 +29,7 @@ namespace TPFinalNivel2_RuizDiaz
 
             // Asignar eventos
             txtCodigo.KeyDown += txtCodigo_KeyDown_1;
-             txtNombre.KeyDown += AltaArticulo_KeyDown;
+            txtNombre.KeyDown += AltaArticulo_KeyDown;
             txtDescripcion.KeyDown += AltaArticulo_KeyDown;
             cbxMarcas.KeyDown += AltaArticulo_KeyDown;
             cbxCategoria.KeyDown += AltaArticulo_KeyDown;
@@ -46,7 +46,7 @@ namespace TPFinalNivel2_RuizDiaz
 
 
 
-            public AltaArticulo(Dominio.Articulos articulo)
+        public AltaArticulo(Dominio.Articulos articulo)
         {
             InitializeComponent();
             this.articulo = articulo;
@@ -216,7 +216,7 @@ namespace TPFinalNivel2_RuizDiaz
             }
 
             // Validación numérica con TryParse
-            if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0 )
+            if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
             {
                 txtPrecio.BackColor = Color.Firebrick;
                 camposValidos = false;
@@ -248,20 +248,20 @@ namespace TPFinalNivel2_RuizDiaz
                 camposValidos = false;
             }
 
-            
+
 
             return camposValidos;
         }
 
 
-         private void AltaArticulo_KeyDown(object sender, KeyEventArgs e)
+        private void AltaArticulo_KeyDown(object sender, KeyEventArgs e)
         {
-          if (e.KeyCode == Keys.Enter)
-        {
-          this.SelectNextControl((Control)sender, true, true, true, true);
-        e.Handled = true;
-        e.SuppressKeyPress = true;
-        }
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl((Control)sender, true, true, true, true);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
 
 
@@ -270,17 +270,21 @@ namespace TPFinalNivel2_RuizDiaz
         private void BtnMarcas_Click(object sender, EventArgs e)
         {
             MarcasNegocio marcasnegocio = new MarcasNegocio();
+
             // Guardamos lo que estaba seleccionado
             var idActual = cbxMarcas.SelectedValue;
-            cbxMarcas.DataSource = marcasnegocio.listarmarca();
 
             AltaMarcas formulario = new AltaMarcas();
             formulario.ShowDialog();
 
             // Recargamos
             cbxMarcas.DataSource = marcasnegocio.listarmarca();
-            // Restauramos la selección
-             cbxMarcas.SelectedValue = idActual;
+
+            // Restauramos la selección (solo si había una)
+            if (idActual != null)
+            {
+                cbxMarcas.SelectedValue = idActual;
+            }
         }
 
         private void BtnCategorias_Click(object sender, EventArgs e)
@@ -324,7 +328,7 @@ namespace TPFinalNivel2_RuizDiaz
                         "Aviso",
                         MessageBoxButtons.OK,   // solo muestra botón Aceptar
                         MessageBoxIcon.Warning);
-                        txtCodigo.Focus();
+                    txtCodigo.Focus();
 
 
 
@@ -339,14 +343,14 @@ namespace TPFinalNivel2_RuizDiaz
                         });               // vuelve el foco
                     }
 
-                   e.Handled = true;
+                    e.Handled = true;
                     e.SuppressKeyPress = true;
                     return;
                 }
 
                 else
                 {
-                    
+
                     this.SelectNextControl((Control)sender, true, true, true, true);
                     e.Handled = true;
                     e.SuppressKeyPress = true;
@@ -382,5 +386,5 @@ namespace TPFinalNivel2_RuizDiaz
     }
 
 }
-    
+
 

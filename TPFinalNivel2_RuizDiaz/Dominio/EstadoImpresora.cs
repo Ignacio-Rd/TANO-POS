@@ -10,7 +10,7 @@ namespace Dominio
     {
         public bool Existe { get; set; }
         public bool FueraDeLinea { get; set; }
+        public bool EnPausa { get; set; }
         public bool EsDeRed { get; set; }
-
     }
 }

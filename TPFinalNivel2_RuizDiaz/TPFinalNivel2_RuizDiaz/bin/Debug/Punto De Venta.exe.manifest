@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opciones del manifiesto de UAC
-          Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
-          nodo requestedExecutionLevel por uno de los siguientes.
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
+          nodo requestedExecutionLevel por alguno de los siguientes.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Si desea usar Virtualización de archivos y Registro para compatibilidad con 
-         versiones anteriores, elimine el nodo requestedExecutionLevel.
+         Si desea usar la virtualización de archivos y del Registro para la
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -43,41 +43,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dominio.dll" size="22528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dominio.dll" size="23552">
       <assemblyIdentity name="Dominio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TAHIGFkj2DpV7d3ME6nlWvhaJJeiPxcuE41S6ZlR6vo=</dsig:DigestValue>
+        <dsig:DigestValue>hhtlPZBDiD493DjwkfpJv9vJFG6VHXH3SMqYLUzRDkU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Negocio}.dll" size="83968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Negocio}.dll" size="92672">
       <assemblyIdentity name="Negocio}" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EWrsyFgSbFmbnCwgskVJRHpaLBHbMcmcHHdD+7pFx88=</dsig:DigestValue>
+        <dsig:DigestValue>n8EcE4nvM4MXZGfPJeR0QgI8YMABUKDKFncD7NEnP/c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Punto De Venta.exe" size="674784">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Punto De Venta.exe" size="675328">
       <assemblyIdentity name="Punto De Venta" version="1.0.0.4" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TjNeQocMBNJk9rUvnbLxIvrctjHX2+ACOKZKg+BRkWQ=</dsig:DigestValue>
+        <dsig:DigestValue>YGYK8HMbzIq5yyWTOdfPZ0fiM5xhAIUuJ6nmgTpe9jo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="Punto De Venta.exe.config" size="269">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>QGmUrgZl/XBn7pf9/dId2KR0tn3vIseWZwAyDrGCr8A=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="microsoft_azure_logo_icon_170956.ico" size="67646">
     <hash>
       <dsig:Transforms>
@@ -85,15 +94,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>5fVrbNTFRmkgIldwB9dxj1peZGT5Ej/xY+121Uj0OxY=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Punto De Venta.exe.config" size="271">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>iCHYUcTtp1VEp6DHcSjfAfrvY3tKGqEhsuQh59/GQjE=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

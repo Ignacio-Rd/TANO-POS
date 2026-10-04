@@ -4,17 +4,17 @@
   <description asmv2:publisher="Punto De Venta" asmv2:product="Punto De Venta" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Punto De Venta.exe.manifest" size="5323">
+    <dependentAssembly dependencyType="install" codebase="Punto De Venta.exe.manifest" size="5361">
       <assemblyIdentity name="Punto De Venta.exe" version="1.0.0.16" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XbKaso5jaGx9oUFnmH2z/oi6Cdl+hhi9Yny084sj48A=</dsig:DigestValue>
+        <dsig:DigestValue>QORURWEkwHifSAI98C/2kBmPCgtCJwiqkb4D1p6E010=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

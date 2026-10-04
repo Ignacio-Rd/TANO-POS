@@ -80,3 +80,15 @@ C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalN
 C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.CoreCompileInputs.cache
 C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe
 C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe.config
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe.manifest
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.application
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.exe
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Punto De Venta.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Dominio.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Negocio}.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Dominio.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\bin\Debug\Negocio}.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe.manifest
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.application
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalN.44E46855.Up2Date

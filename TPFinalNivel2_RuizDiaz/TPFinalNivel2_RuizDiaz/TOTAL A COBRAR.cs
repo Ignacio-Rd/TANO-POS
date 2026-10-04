@@ -12,6 +12,7 @@ using TPFinalNivel2_RuizDiaz;
 using Dominio;
 using Negocios;
 using Negocio_;
+using Negocio_.Impresion;
 using System.Globalization;
 
 namespace TPFinalNivel2_RuizDiaz
@@ -180,7 +181,7 @@ namespace TPFinalNivel2_RuizDiaz
         }
 
 
-        private void BtnImprimir_Click(object sender, EventArgs e)
+        private async void BtnImprimir_Click(object sender, EventArgs e)
         {
             BtnImprimir.Enabled = false;
             // Primero ejecutamos toda la lógica de guardado de la venta
@@ -188,6 +189,7 @@ namespace TPFinalNivel2_RuizDiaz
             Venta_Por_Producto_Negocio vppNegocio = new Venta_Por_Producto_Negocio();
             ArticuloNegocio negocioArt = new ArticuloNegocio();
             MetodoDePagoNegocio fondos = new MetodoDePagoNegocio();
+            bool ventaGuardada = false;
 
             try
             {
@@ -214,47 +216,50 @@ namespace TPFinalNivel2_RuizDiaz
 
                     /*fondos.SumarAlFondo(metodopago, totalacum);*/
 
-                    // Ahora procedemos con la impresión
-                    ImpresionNeogcio negocioImp = new ImpresionNeogcio();
-                    PrintDocument pd = new PrintDocument();
-                    string nombreImpresora = "";
-
-                    nombreImpresora = negocioImp.ObtenerImpresora();
-
-                    if (string.IsNullOrEmpty(nombreImpresora) || nombreImpresora == "Seleccione Impresora")
-                    {
-                        MessageBox.Show("No has configurado ninguna impresora. Por favor, ve al menú de ajustes.", "Configuración Faltante");
-                        // La venta YA se guardó, cerramos igual
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                        return;
-                    }
-
-                    pd.PrinterSettings.PrinterName = nombreImpresora;
-
-                    if (!pd.PrinterSettings.IsValid)
-                    {
-                        MessageBox.Show($"La impresora '{nombreImpresora}' no está instalada o cambió de nombre en Windows.", "Impresora no encontrada");
-                        // La venta YA se guardó, cerramos igual
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                        return;
-                    }
-
-                    pd.PrintPage += new PrintPageEventHandler(Imprimir_PrintPage);
-                    pd.Print();
-
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    ventaGuardada = true;
                 }
             }
             catch (Exception ex)
             {
-                RegistrarError(ex.Message, "Error en Impresión con guardado");
+                RegistrarError(ex.Message, "Error al guardar la venta");
                 MessageBox.Show("Ocurrió un error inesperado. Se ha guardado un reporte en la carpeta del programa.", "Error");
+                return;
             }
 
+            if (!ventaGuardada)
+                return;
 
+            // La venta YA se guardó: pase lo que pase con la impresión, el formulario se cierra igual
+            // (si quedara abierto, se podría volver a guardar la misma venta).
+            try
+            {
+                string nombreImpresora = new ImpresionNeogcio().ObtenerImpresora();
+
+                if (string.IsNullOrEmpty(nombreImpresora) || nombreImpresora == "Seleccione Impresora")
+                {
+                    MessageBox.Show("No has configurado ninguna impresora. Por favor, ve al menú de ajustes.", "Configuración Faltante");
+                }
+                else
+                {
+                    var resultado = await new ServicioImpresion().ImprimirAsync(
+                        nombreImpresora,
+                        pd => pd.PrintPage += new PrintPageEventHandler(Imprimir_PrintPage));
+
+                    if (!resultado.Exito)
+                    {
+                        RegistrarError(resultado.Error, "Impresión de ticket");
+                        MessageBox.Show("La venta se guardó, pero hubo un problema con la impresión: " + resultado.Error, "Impresión");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                RegistrarError(ex.Message, "Impresión de ticket");
+                MessageBox.Show("La venta se guardó, pero no se pudo imprimir el ticket.", "Impresión");
+            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void RegistrarError(string mensaje, string origen)
