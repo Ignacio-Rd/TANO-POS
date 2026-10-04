@@ -25,7 +25,7 @@ namespace Negocios
 
         public AccesoDATOS()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS01; database=CATALOGO_DB_RECUPERADA; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_DB_RECUPERADA; integrated security=true");
             comando = new SqlCommand();
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = "select Codigo, Nombre, A.Descripcion Descripcion, ImagenUrl, Precio, C.Descripcion Tipo, M.Descripcion Marca , Stock from ARTICULOS A, CATEGORIAS C, MARCAS M where IdMarca = M.Id and IdCategoria = C.Id";

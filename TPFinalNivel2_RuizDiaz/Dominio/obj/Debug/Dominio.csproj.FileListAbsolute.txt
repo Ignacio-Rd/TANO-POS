@@ -4,3 +4,9 @@ C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Dominio\obj\Deb
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.dll
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\bin\Debug\Dominio.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\bin\Debug\Dominio.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Dominio\obj\Debug\Dominio.pdb

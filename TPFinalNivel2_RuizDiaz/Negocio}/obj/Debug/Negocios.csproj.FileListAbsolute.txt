@@ -12,3 +12,17 @@ C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\De
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.CopyComplete
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.dll
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Negocio}.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Negocio}.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\BouncyCastle.Cryptography.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Dominio.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.xmlworker.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\Dominio.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\BouncyCastle.Cryptography.xml
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\bin\Debug\itextsharp.xml
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.AssemblyReference.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.CoreCompileInputs.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocios.csproj.Up2Date
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.dll
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\Negocio}\obj\Debug\Negocio}.pdb

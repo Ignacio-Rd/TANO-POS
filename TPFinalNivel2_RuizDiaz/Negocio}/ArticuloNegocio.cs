@@ -22,7 +22,7 @@ namespace Negocios
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS01; database=CATALOGO_DB_RECUPERADA; integrated security = true";
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB_RECUPERADA; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select Codigo, Nombre, A.Descripcion Descripcion, ImagenUrl, Precio, PrecioCosto, " +
                     "C.Descripcion Tipo, M.Descripcion Marca, A.IdMarca, A.IdCategoria, A.Id IdArticulo, Stock from ARTICULOS A, CATEGORIAS C, MARCAS M where IdMarca = M.Id and IdCategoria = C.Id ORDER BY A.Nombre ASC";

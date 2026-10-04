@@ -128,11 +128,11 @@ namespace TPFinalNivel2_RuizDiaz
             Font fontHeader = new Font("Consolas", 12, FontStyle.Bold);
             Font fontTotal = new Font("Consolas", 11, FontStyle.Bold);
 
-            int x = 5; // Posición horizontal inicial
-            int y = 20; // Posición vertical inicial
+            int x = e.MarginBounds.Left;   // antes: 5
+            int y = e.MarginBounds.Top;    // antes: 20
             int lineHeight = 14;
 
-            // ------------------ ENCABEZADO ------------------1
+            // ------------------ ENCABEZADO ------------------
             e.Graphics.DrawString("--- KIOSCO 'EL TANO' ---", fontHeader, Brushes.Black, x, y);
             y += lineHeight * 2;
             e.Graphics.DrawString($"Venta Nº: {ticket.IdVenta}", fontNormal, Brushes.Black, x, y);
@@ -148,13 +148,10 @@ namespace TPFinalNivel2_RuizDiaz
             e.Graphics.DrawString("----------------------------------", fontNormal, Brushes.Black, x, y);
             y += lineHeight;
 
-            // Recorrer la lista de productos
             foreach (var linea in ticket.venta_Por_Productos)
             {
-                // Ajustar el nombre del producto para que no exceda el ancho
                 string productoNombre = linea.Producto.Length > 20 ? linea.Producto.Substring(0, 20) : linea.Producto.PadRight(20);
 
-                // Construir la línea de texto
                 string lineaTexto =
                     linea.Cantidad.ToString().PadRight(6) +
                     productoNombre +

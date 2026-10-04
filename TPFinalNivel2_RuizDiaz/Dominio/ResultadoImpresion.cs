@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Negocios;
 
-namespace Negocios
+namespace Dominio
 {
-    public class Class1
+    public class ResultadoImpresion
     {
+        public bool Exito { get; set; }
+        public string Error { get; set; }
     }
 }

@@ -45,3 +45,38 @@ C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_R
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.CopyComplete
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe
 C:\Users\usu01\OneDrive\Desktop\PROYECTOS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.pdb
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.AssemblyReference.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.BtnAgregar.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.AltaArticulo.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.altaCategorias.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.AltaMarcas.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Cambiar_Precio_Por_Marca.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.CargarProveedor.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Configurar_Impresora.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ConsultarCompraProveedores.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.CUANTO_SE_VENDIÓ_POR_PRODUCTO.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ENTRADA_DE_MERCADERIA.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FechaInformeDeVentas.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Form1.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FormularioPrincipal.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.formas_de_pago.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.frmCancelaroBajarDeuda.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.DetalleDeCompra.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.frmNuevoClientecs.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.GastosVarios.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.ListaDeudores.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.PagarAProveedor.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.PAGAR_A_PROVEEDOR.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Properties.Resources.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.REGISTRADORA_DE_COMPRAS.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.TOTAL_A_COBRAR.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.FIADO.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.Venta_Por_Venta.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VentaTotalDia.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerDetalleCompra.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerDetalles.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.VerInformeEnPantalla.resources
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.GenerateResource.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\TPFinalNivel2_RuizDiaz.csproj.CoreCompileInputs.cache
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.exe
+C:\POS\TANO-POS\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz\obj\Debug\Punto De Venta.pdb
