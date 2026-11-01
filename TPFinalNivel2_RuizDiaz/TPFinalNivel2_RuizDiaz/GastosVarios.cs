@@ -18,6 +18,7 @@ namespace TPFinalNivel2_RuizDiaz
         public GastosVarios()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             cargarcbx();      // ← ¿está esto?
             CargarHistorial();
         }

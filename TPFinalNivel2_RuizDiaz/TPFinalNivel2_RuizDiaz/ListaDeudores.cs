@@ -23,6 +23,7 @@ namespace TPFinalNivel2_RuizDiaz
         public ListaDeudores()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void Cargar()

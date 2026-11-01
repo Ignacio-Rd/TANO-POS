@@ -27,6 +27,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Venta_Por_Venta()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
 
             // Configuración DtpInicio
             DtpHoraInicio.Format = DateTimePickerFormat.Custom;

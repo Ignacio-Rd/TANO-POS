@@ -28,6 +28,7 @@ namespace TPFinalNivel2_RuizDiaz
         public FIADO(decimal montoTotal, decimal subtotal, List<Articulos> lista, int idMetodo, string nombreMetodo, int idventa)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.montoActualCompra = montoTotal;
             // Cargamos el monto de la compra actual en el TextBox para que ya aparezca
             txtSumaDeuda.Text = montoActualCompra.ToString("0.00");

@@ -32,6 +32,7 @@ namespace TPFinalNivel2_RuizDiaz
         public TOTAL_A_COBRAR(decimal total, decimal subtotal, List<Articulos> lista, int idMetodo, string nombreMetodo)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
 
             _listaArticulos = lista;
             _nombreMetodo = nombreMetodo;
@@ -41,7 +42,8 @@ namespace TPFinalNivel2_RuizDiaz
             _subtotalSinRecargo = subtotal;  // El monto puro (para el Ticket)
 
 
-            LblTotal.Text = $"Total a cobrar: {total.ToString("C")}";
+            LblTotal.Text = total.ToString("C");
+            AplicarDisenioCobro();
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -286,8 +288,9 @@ namespace TPFinalNivel2_RuizDiaz
         {
             lblMetodo.Text = _nombreMetodo;
 
+            // El KeyDown ya está suscripto en el diseñador. Suscribirlo también acá hacía que un solo Enter
+            // ejecutara el guardado dos veces (y la venta quedaba duplicada).
             this.KeyPreview = true;
-            this.KeyDown += TOTAL_A_COBRAR_KeyDown;
         }
 
      

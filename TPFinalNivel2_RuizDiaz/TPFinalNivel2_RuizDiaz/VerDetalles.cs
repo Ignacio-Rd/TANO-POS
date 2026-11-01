@@ -22,6 +22,7 @@ namespace TPFinalNivel2_RuizDiaz
         public VerDetalles(Articulos articulo)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.articulo = articulo;
         }
 

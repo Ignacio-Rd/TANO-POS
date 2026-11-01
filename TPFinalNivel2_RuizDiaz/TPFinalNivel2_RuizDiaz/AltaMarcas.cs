@@ -22,6 +22,7 @@ namespace TPFinalNivel2_RuizDiaz
         public AltaMarcas()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void AltaMarcas_Load(object sender, EventArgs e)

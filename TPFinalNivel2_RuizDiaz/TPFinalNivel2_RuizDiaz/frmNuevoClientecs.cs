@@ -17,6 +17,7 @@ namespace TPFinalNivel2_RuizDiaz
         public frmNuevoClientecs()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

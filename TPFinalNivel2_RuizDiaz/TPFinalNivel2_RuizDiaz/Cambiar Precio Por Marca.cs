@@ -26,6 +26,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Cambiar_Precio_Por_Marca()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             modoActual = ModoAumento.Marca;
             this.Text = "Actualizar por Marca";
         }
@@ -33,6 +34,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Cambiar_Precio_Por_Marca(ModoAumento modo, string codigo, int cantidad)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.modoActual = modo;
 
             // 1. PRIMERO asignamos los valores a las variables globales
@@ -58,6 +60,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Cambiar_Precio_Por_Marca(ModoAumento modo)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.modoActual = modo;
 
             if (modoActual == ModoAumento.Categoria)

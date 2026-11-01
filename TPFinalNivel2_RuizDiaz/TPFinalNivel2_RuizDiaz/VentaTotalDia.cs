@@ -18,6 +18,7 @@ namespace TPFinalNivel2_RuizDiaz
         public VentaTotalDia()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void BtnTotalDia_Click(object sender, EventArgs e)

@@ -40,10 +40,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.LblRecargo = new System.Windows.Forms.Label();
-            this.btnEliminarArticulo = new System.Windows.Forms.Button();
-            this.Btn_Total = new System.Windows.Forms.Button();
+            this.btnEliminarArticulo = new Diseno.BotonPlano();
+            this.Btn_Total = new Diseno.BotonPlano();
             this.lblAvisoCantidad = new System.Windows.Forms.Label();
-            this.BtnFiados = new System.Windows.Forms.Button();
+            this.BtnFiados = new Diseno.BotonPlano();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRegistradora)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -251,16 +251,16 @@
         private System.Windows.Forms.DataGridView DgvRegistradora;
         private System.Windows.Forms.TextBox codigo_Producto;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Btn_Total;
+        private Diseno.BotonPlano Btn_Total;
         private System.Windows.Forms.Label lbl_precio;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbx_metododepago;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnEliminarArticulo;
+        private Diseno.BotonPlano btnEliminarArticulo;
         private System.Windows.Forms.Label LblRecargo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblAvisoCantidad;
-        private System.Windows.Forms.Button BtnFiados;
+        private Diseno.BotonPlano BtnFiados;
     }
 }

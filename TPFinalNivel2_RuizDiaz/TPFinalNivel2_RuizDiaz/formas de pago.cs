@@ -22,6 +22,7 @@ namespace TPFinalNivel2_RuizDiaz
         public formas_de_pago()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
     

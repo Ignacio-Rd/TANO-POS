@@ -19,6 +19,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Configurar_Impresora()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void Configurar_Impresora_Load(object sender, EventArgs e)

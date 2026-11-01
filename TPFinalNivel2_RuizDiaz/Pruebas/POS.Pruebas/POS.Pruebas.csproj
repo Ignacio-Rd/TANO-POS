@@ -12,11 +12,14 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Dominio\Dominio.csproj" />
     <ProjectReference Include="..\..\Negocio}\Negocios.csproj" />
+    <ProjectReference Include="..\..\TPFinalNivel2_RuizDiaz\TPFinalNivel2_RuizDiaz.csproj" />
   </ItemGroup>
 
   <ItemGroup>
