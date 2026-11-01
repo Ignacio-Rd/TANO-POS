@@ -77,6 +77,7 @@
     <Compile Include="RegistroErrores.cs" />
     <Compile Include="TtotalPorFechNegocio.cs" />
     <Compile Include="VentaNegocio.cs" />
+    <Compile Include="VentaNegocio.Transacciones.cs" />
     <Compile Include="Venta_Por_Producto_Negocio.cs" />
   </ItemGroup>
   <ItemGroup>

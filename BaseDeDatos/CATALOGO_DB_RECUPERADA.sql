@@ -268,5 +268,47 @@ IF NOT EXISTS (SELECT 1 FROM dbo.CONFIGURACION WHERE Id = 1)
     INSERT INTO dbo.CONFIGURACION (Id, NombreImpresora) VALUES (1, 'Microsoft Print to PDF');
 GO
 
+-----------------------------------------------------------------
+-- 8. AUDITORIA DE VENTAS ELIMINADAS Y DEVOLUCION DE STOCK
+-- Borrar una venta ya no es un DELETE suelto: el programa guarda aca
+-- QUIEN la borro, CUANDO y POR QUE, junto con una copia de la venta y
+-- de sus lineas, y devuelve el stock a los articulos.
+-----------------------------------------------------------------
+
+IF OBJECT_ID('dbo.VENTAS_ELIMINADAS', 'U') IS NULL
+CREATE TABLE dbo.VENTAS_ELIMINADAS (
+    IdAuditoria      INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdVenta          INT           NOT NULL,           -- numero que tenia la venta
+    FechaVenta       DATETIME      NOT NULL,
+    Total            DECIMAL(18,2) NOT NULL,
+    IdMetodo         INT           NULL,
+    MetodoPago       NVARCHAR(100) NULL,               -- nombre al momento de borrar
+    IdCliente        INT           NULL,               -- si era un fiado
+    FechaEliminacion DATETIME      NOT NULL CONSTRAINT DF_VentasEliminadas_Fecha DEFAULT GETDATE(),
+    Usuario          NVARCHAR(256) NOT NULL,           -- usuario de Windows
+    Equipo           NVARCHAR(128) NOT NULL,
+    Motivo           NVARCHAR(300) NOT NULL
+);
+GO
+
+IF OBJECT_ID('dbo.VENTAS_ELIMINADAS_DETALLE', 'U') IS NULL
+CREATE TABLE dbo.VENTAS_ELIMINADAS_DETALLE (
+    Id             INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    IdAuditoria    INT           NOT NULL CONSTRAINT FK_VentasElimDetalle_Auditoria REFERENCES dbo.VENTAS_ELIMINADAS(IdAuditoria),
+    IdArticulo     INT           NULL,
+    Producto       NVARCHAR(100) NOT NULL,
+    Cantidad       INT           NOT NULL,
+    PrecioUnitario DECIMAL(18,2) NOT NULL,
+    ImporteLinea   DECIMAL(18,2) NULL,
+    StockRepuesto  BIT           NOT NULL               -- 1 = se devolvieron las unidades al stock
+);
+GO
+
+-- Marca las lineas cuyo stock NO se pudo descontar al vender (no habia stock suficiente):
+-- al borrar esa venta no hay nada que devolver. Las ventas anteriores quedan en 1.
+IF COL_LENGTH('dbo.Venta_Por_Producto', 'StockDescontado') IS NULL
+    ALTER TABLE dbo.Venta_Por_Producto ADD StockDescontado BIT NOT NULL CONSTRAINT DF_VentaPorProducto_StockDescontado DEFAULT 1;
+GO
+
 PRINT 'Base CATALOGO_DB_RECUPERADA lista.';
 GO

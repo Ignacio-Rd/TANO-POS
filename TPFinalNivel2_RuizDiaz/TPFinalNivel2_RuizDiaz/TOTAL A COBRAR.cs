@@ -27,6 +27,7 @@ namespace TPFinalNivel2_RuizDiaz
         int metodopago;
         TICKET _ticketParaImprimir;
         int idventagenerada;
+        bool _guardando;
 
         // Actualiza tu constructor
         public TOTAL_A_COBRAR(decimal total, decimal subtotal, List<Articulos> lista, int idMetodo, string nombreMetodo)
@@ -48,68 +49,42 @@ namespace TPFinalNivel2_RuizDiaz
 
         public void button1_Click(object sender, EventArgs e)
         {
-            VentaNegocio ventaNegocio = new VentaNegocio();
-            Venta_Por_Producto_Negocio vppNegocio = new Venta_Por_Producto_Negocio();
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            MetodoDePagoNegocio fondos = new MetodoDePagoNegocio();
+            if (!GuardarVenta())
+                return;
 
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        // Guarda la venta COMPLETA (venta, líneas, stock y pago) en una sola transacción: o queda todo o no queda nada.
+        // Devuelve false si no se pudo guardar; en ese caso la base no cambió y se puede reintentar sin duplicar nada.
+        private bool GuardarVenta()
+        {
+            // Si ya se guardó (por ejemplo, un segundo Enter o clic mientras se procesaba), no se vuelve a guardar.
+            if (_ticketParaImprimir != null || _guardando)
+                return _ticketParaImprimir != null;
+
+            _guardando = true;
             try
             {
-                int idVentaGenerada = ventaNegocio.Agregar_venta(DateTime.Now, totalacum, metodopago);
+                ResultadoVenta resultado = new VentaNegocio().RegistrarVentaCompleta(
+                    _listaArticulos, metodopago, _nombreMetodo, _subtotalSinRecargo, totalacum);
 
-                idventagenerada = idVentaGenerada;
-
-                Ventas venta = new Ventas();
-
-
-                // RECIÉN ACÁ IMPACTAMOS LA BASE DE DATOS
-                ArticuloNegocio negocioArt = new ArticuloNegocio();
-
-                // Agrupamos por código para no ir 50 veces a la base de datos
-                // Si no querés usar GroupBy, podés usar un foreach simple y llamar a Descontar_Stock(art.codigo, 1)
-                var productosAgrupados = _listaArticulos.GroupBy(x => x.codigo)
-                                                       .Select(g => new { Codigo = g.Key, Total = g.Count() });
-
-                foreach (var item in productosAgrupados)
-                {
-                    negocioArt.Descontar_Stock(item.Codigo, item.Total);
-                }
-
-
-
-                if (idVentaGenerada > 0)
-                {
-                    _ticketParaImprimir = vppNegocio.Agregar_Venta_Producto(
-                        _listaArticulos,
-                        DateTime.Now,
-                        idVentaGenerada,
-                        _subtotalSinRecargo,
-                        _nombreMetodo,
-                        totalacum
-                    );
-
-                    //aplicamos el cambio a los fondos según con que metodo pagó el cliente
-
-                    /*fondos.SumarAlFondo(metodopago, totalacum);*/
-
-                    // MessageBox.Show("Venta guardada con éxito.");
-
-                    // CAMBIOS AQUÍ:
-                    //  button1.Enabled = false;
-                    // button1.Visible = false;// Deshabilitamos el botón de confirmar (ya se guardó)
-                    // BtnImprimir.Visible = true;    // Habilitamos imprimir
-                    // btnFinalizar.Visible = true;
-                    // BtnImprimir.Enabled = true;    // Habilitamos imprimir
-                    // btnFinalizar.Enabled = true;   // Habilitamos un botón de "Solo Finalizar"
-                    // BtnFiar.Visible = false;
-                    //  btnFinalizar.Focus();
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+                idventagenerada = resultado.IdVenta;
+                _ticketParaImprimir = resultado.Ticket;
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                RegistroErrores.Registrar(ex, "Error al guardar la venta");
+                MessageBox.Show("No se pudo guardar la venta. No se registró nada (ni la venta, ni el stock, ni el pago), " +
+                                "así que podés volver a intentarlo." + Environment.NewLine + Environment.NewLine + "Detalle: " + ex.Message,
+                                "Venta no guardada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                _guardando = false;
             }
         }
 
@@ -186,50 +161,12 @@ namespace TPFinalNivel2_RuizDiaz
         private async void BtnImprimir_Click(object sender, EventArgs e)
         {
             BtnImprimir.Enabled = false;
-            // Primero ejecutamos toda la lógica de guardado de la venta
-            VentaNegocio ventaNegocio = new VentaNegocio();
-            Venta_Por_Producto_Negocio vppNegocio = new Venta_Por_Producto_Negocio();
-            ArticuloNegocio negocioArt = new ArticuloNegocio();
-            MetodoDePagoNegocio fondos = new MetodoDePagoNegocio();
-            bool ventaGuardada = false;
-
-            try
+            // Primero se guarda la venta completa (una sola transacción).
+            if (!GuardarVenta())
             {
-                int idVentaGenerada = ventaNegocio.Agregar_venta(DateTime.Now, totalacum, metodopago);
-                idventagenerada = idVentaGenerada;
-
-                var productosAgrupados = _listaArticulos.GroupBy(x => x.codigo)
-                                                       .Select(g => new { Codigo = g.Key, Total = g.Count() });
-                foreach (var item in productosAgrupados)
-                {
-                    negocioArt.Descontar_Stock(item.Codigo, item.Total);
-                }
-
-                if (idVentaGenerada > 0)
-                {
-                    _ticketParaImprimir = vppNegocio.Agregar_Venta_Producto(
-                        _listaArticulos,
-                        DateTime.Now,
-                        idVentaGenerada,
-                        _subtotalSinRecargo,
-                        _nombreMetodo,
-                        totalacum
-                    );
-
-                    /*fondos.SumarAlFondo(metodopago, totalacum);*/
-
-                    ventaGuardada = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                RegistrarError(ex.Message, "Error al guardar la venta");
-                MessageBox.Show("Ocurrió un error inesperado. Se ha guardado un reporte en la carpeta del programa.", "Error");
+                BtnImprimir.Enabled = true;   // no se guardó nada: se puede reintentar
                 return;
             }
-
-            if (!ventaGuardada)
-                return;
 
             // La venta YA se guardó: pase lo que pase con la impresión, el formulario se cierra igual
             // (si quedara abierto, se podría volver a guardar la misma venta).

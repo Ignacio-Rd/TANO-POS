@@ -27,6 +27,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Venta_Por_Venta()
         {
             InitializeComponent();
+            AgregarBotonVerEliminadas();
             Diseno.Estilizador.Aplicar(this);
 
             // Configuración DtpInicio
@@ -44,6 +45,22 @@ namespace TPFinalNivel2_RuizDiaz
             // Hora Fin: Hoy a las 23:59
             DtpHoraFin.Value = DateTime.Today.AddHours(23).AddMinutes(59);
 
+        }
+
+        // Acceso al registro de ventas eliminadas (quién, cuándo y por qué). Se arma por código, debajo de la columna de botones de la derecha.
+        private void AgregarBotonVerEliminadas()
+        {
+            var boton = new Button
+            {
+                Name = "BtnVerEliminadas",
+                Text = "VER ELIMINADAS",
+                Size = button1.Size,
+                Font = button1.Font,
+                TabIndex = 90
+            };
+            boton.Location = new Point(button1.Left, button1.Bottom + (button1.Top - BtnFrmFiados.Bottom));
+            boton.Click += BtnVerEliminadas_Click;
+            Controls.Add(boton);
         }
 
         private void cargar()
@@ -166,42 +183,57 @@ namespace TPFinalNivel2_RuizDiaz
 
         private void BtnBorrarVenta_Click(object sender, EventArgs e)
         {
-            VentaNegocio negocio = new VentaNegocio();
+            // 1. Verificamos que haya una fila seleccionada y que sea una venta
+            Ventas seleccionado = DgvVentas.CurrentRow == null ? null : DgvVentas.CurrentRow.DataBoundItem as Ventas;
 
-            try
+            if (seleccionado == null)
             {
-                // 1. Verificamos que haya una fila seleccionada
-                if (DgvVentas.CurrentRow == null)
-                {
-                    MessageBox.Show("Por favor, seleccione una venta de la lista para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Por favor, seleccione una venta de la lista para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Las listas por fecha también muestran cobros de deudores: son otra tabla y NO se borran como ventas.
+            if (seleccionado.EsCobroDeuda)
+            {
+                MessageBox.Show("Esta fila es un cobro de deudor, no una venta. Los cobros se anulan desde la pantalla de deudores.",
+                                "No se puede eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 2. Pedimos el motivo (obligatorio): queda registrado junto con el usuario y la fecha.
+            string metodo = seleccionado.metododepago != null ? seleccionado.metododepago.MetodoPago : "";
+            string resumen = "Venta Nº " + seleccionado.Id + "  ·  " + seleccionado.Fecha.ToString("dd/MM/yyyy HH:mm") +
+                             "  ·  " + seleccionado.Total.ToString("C2") + "  ·  " + metodo;
+
+            using (var pedido = new Auditoria.PedirMotivoEliminacion(resumen))
+            {
+                if (pedido.ShowDialog(this) != DialogResult.OK)
                     return;
-                }
 
-                // 2. Pedimos confirmación con un ícono de advertencia (como en tu captura 275)
-                DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar esta venta? Esta acción no se puede deshacer.",
-                                                         "Eliminando Venta",
-                                                         MessageBoxButtons.YesNo,
-                                                         MessageBoxIcon.Warning);
-
-                if (respuesta == DialogResult.Yes)
+                try
                 {
-                    // 3. Obtenemos el objeto seleccionado
-                    Ventas seleccionado = (Ventas)DgvVentas.CurrentRow.DataBoundItem;
+                    // 3. Una sola transacción: constancia + devolución de stock + borrado
+                    ResultadoEliminacion resultado = new VentaNegocio().EliminarVentaConAuditoria(seleccionado.Id, pedido.Motivo);
 
-                    // 4. Ejecutamos el borrado
-                    negocio.EliminarVenta(seleccionado.Id);
+                    MessageBox.Show("Venta eliminada. Se devolvieron " + resultado.UnidadesRepuestas + " unidad(es) al stock y quedó registrada la eliminación.",
+                                    "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    MessageBox.Show("Venta eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // 5. Refrescamos la grilla y el totalizador para que el número baje
-                    cargar(); // O el método que uses para recargar la lista actual
+                    // 4. Refrescamos la grilla y el totalizador para que el número baje
+                    cargar();
+                }
+                catch (Exception ex)
+                {
+                    RegistroErrores.Registrar(ex, "Eliminar venta " + seleccionado.Id);
+                    MessageBox.Show("No se pudo eliminar. No se cambió nada." + Environment.NewLine + Environment.NewLine + ex.Message,
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se pudo eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }    
-           
+        }
+
+        private void BtnVerEliminadas_Click(object sender, EventArgs e)
+        {
+            using (var registro = new Auditoria.VentasEliminadasForm())
+                registro.ShowDialog(this);
         }
 
         private void FiltroRango_Click(object sender, EventArgs e)
