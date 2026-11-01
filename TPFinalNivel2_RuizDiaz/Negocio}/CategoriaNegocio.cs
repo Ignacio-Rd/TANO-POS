@@ -1,4 +1,5 @@
 ﻿using System;
+using Negocio_.Calculos;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -108,27 +109,7 @@ namespace Negocios
             {
                 AccesoDATOS datos = new AccesoDATOS();
 
-                switch (tipoAjuste)
-                {
-                    case "PORC_COSTOVENTA":
-                        query = "UPDATE Articulos SET PrecioCosto *= (1 + @val/100), Precio *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_COSTOVENTA":
-                        query = "UPDATE Articulos SET PrecioCosto += @val, Precio += @val";
-                        break;
-                    case "PORC_VENTA":
-                        query = "UPDATE Articulos SET Precio *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_VENTA":
-                        query = "UPDATE Articulos SET Precio += @val";
-                        break;
-                    case "PORC_COSTO":
-                        query = "UPDATE Articulos SET PrecioCosto *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_COSTO":
-                        query = "UPDATE Articulos SET PrecioCosto += @val";
-                        break;
-                }
+                query = AjusteDePrecios.SentenciaUpdate(tipoAjuste);
 
                 query += " WHERE IdCategoria = @IdCategoria";
 

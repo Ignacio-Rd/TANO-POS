@@ -134,13 +134,20 @@ namespace Negocio_
             (ISNULL((SELECT SUM(Total) FROM Ventas V INNER JOIN metodos_de_pago M ON V.id_metodo = M.id_metodo WHERE M.metodo_pago = 'FIADO'), 0) - 
              ISNULL((SELECT SUM(Monto) FROM PAGOS_DEUDORES), 0)) as SaldoHistorico");
 
-            datos.EjecutarLectura();
-            if (datos.Lector.Read())
+            try
             {
-                deudaHistorica = (decimal)datos.Lector["SaldoHistorico"];
-            }
+                datos.EjecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    deudaHistorica = (decimal)datos.Lector["SaldoHistorico"];
+                }
 
-            return deudaHistorica;
+                return deudaHistorica;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
 
 
         }

@@ -1,0 +1,132 @@
+name: Pruebas
+
+# Se ejecuta solo en cada "git push" a cualquier rama, en los pull requests y a mano
+# (pestaña Actions -> Pruebas -> Run workflow).
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# Si llega un push nuevo a la misma rama, cancela la corrida anterior que seguía en curso.
+concurrency:
+  group: pruebas-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  compilar-y-probar:
+    name: Compilar y ejecutar pruebas
+    # El sistema es WinForms sobre .NET Framework 4.8: solo compila en Windows.
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    env:
+      SOLUCION: TPFinalNivel2_RuizDiaz/TPFinalNivel2_RuizDiaz/Punto_De_Venta.sln
+      DLL_PRUEBAS: TPFinalNivel2_RuizDiaz/Pruebas/POS.Pruebas/bin/Release/net48/POS.Pruebas.dll
+      CONFIG_PRUEBAS: TPFinalNivel2_RuizDiaz/Pruebas/POS.Pruebas/bin/Release/net48/POS.Pruebas.dll.config
+      BASE_DE_PRUEBAS: CATALOGO_DB_TEST
+      # En el servidor, si no hay base de datos las pruebas de integración FALLAN (en tu PC se omiten).
+      POS_REQUIRE_DB: "1"
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      # El proyecto de pruebas usa el formato moderno (SDK-style) y el resto el formato clásico.
+      # Se fija el SDK 8 solo dentro del servidor para que MSBuild de Visual Studio 2022 lo entienda.
+      - name: Instalar .NET SDK 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Fijar la versión del SDK (solo en el servidor)
+        shell: pwsh
+        run: |
+          '{ "sdk": { "version": "8.0.100", "rollForward": "latestFeature" } }' | Set-Content -Path global.json -Encoding utf8
+
+      - name: Preparar MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restaurar paquetes y compilar (Release)
+        shell: pwsh
+        run: |
+          msbuild $env:SOLUCION -restore -p:RestorePackagesConfig=true -p:Configuration=Release -m -verbosity:minimal
+          if ($LASTEXITCODE -ne 0) { throw "La compilación falló." }
+
+      - name: Preparar SQL Server y la base de pruebas
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+
+          if (-not (Get-Command sqlcmd -ErrorAction SilentlyContinue)) {
+            throw "No se encontró sqlcmd en el servidor."
+          }
+
+          # 1) LocalDB viene con Visual Studio en el servidor. Si no estuviera, se instala SQL Server Express.
+          $localdb = (Get-Command SqlLocalDB.exe -ErrorAction SilentlyContinue).Source
+          if (-not $localdb) {
+            $localdb = Get-ChildItem 'C:\Program Files\Microsoft SQL Server' -Recurse -Filter SqlLocalDB.exe -ErrorAction SilentlyContinue |
+                       Select-Object -First 1 -ExpandProperty FullName
+          }
+
+          if ($localdb) {
+            & $localdb create PosPruebas -s
+            if ($LASTEXITCODE -ne 0) { throw "No se pudo crear la instancia LocalDB." }
+            $servidor = '(localdb)\PosPruebas'
+          }
+          else {
+            choco install sql-server-express -y --no-progress
+            if ($LASTEXITCODE -ne 0) { throw "No se pudo instalar SQL Server Express." }
+            $servidor = '.\SQLEXPRESS'
+          }
+          Write-Host "Servidor SQL: $servidor"
+
+          # 2) Crear la base de pruebas con el mismo script que usa el proyecto (cambiando solo el nombre de la base).
+          $script = (Get-Content 'BaseDeDatos/CATALOGO_DB_RECUPERADA.sql' -Raw -Encoding utf8) -replace 'CATALOGO_DB_RECUPERADA', $env:BASE_DE_PRUEBAS
+          Set-Content -Path 'crear_base_pruebas.sql' -Value $script -Encoding utf8
+          sqlcmd -S $servidor -E -C -b -f 65001 -i 'crear_base_pruebas.sql'
+          if ($LASTEXITCODE -ne 0) { throw "No se pudo crear la base de pruebas." }
+
+          # 3) Guardar el servidor para los pasos siguientes.
+          "SERVIDOR_SQL=$servidor" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Apuntar las pruebas a la base del servidor
+        shell: pwsh
+        run: |
+          $config = Get-Content $env:CONFIG_PRUEBAS -Raw
+          $origen = 'server=.\SQLEXPRESS'
+          if (-not $config.Contains($origen)) { throw "No se encontró '$origen' en $env:CONFIG_PRUEBAS" }
+          $config.Replace($origen, "server=$env:SERVIDOR_SQL") | Set-Content -Path $env:CONFIG_PRUEBAS -Encoding utf8
+
+      # Seguro extra: el sistema ya no deja conexiones abiertas (y por eso no necesita MSDTC), pero si alguna
+      # operación futura escalara a transacción distribuida, el servicio tiene que estar disponible.
+      - name: Iniciar el coordinador de transacciones (MSDTC)
+        shell: pwsh
+        continue-on-error: true
+        run: Start-Service MSDTC
+
+      - name: Pruebas unitarias (NUnit + Moq, sin base de datos)
+        shell: pwsh
+        run: |
+          dotnet test $env:DLL_PRUEBAS --filter "TestCategory=Unitaria" `
+            --logger "trx;LogFileName=unitarias.trx" --logger "console;verbosity=normal" `
+            --results-directory TestResults
+
+      # Corre aunque las unitarias hayan fallado, para ver todos los problemas de una sola vez.
+      - name: Pruebas de integración (SQL Server, con rollback automático)
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          dotnet test $env:DLL_PRUEBAS --filter "TestCategory=Integracion" `
+            --logger "trx;LogFileName=integracion.trx" --logger "console;verbosity=normal" `
+            --results-directory TestResults
+
+      - name: Guardar el detalle de los resultados
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados-de-pruebas
+          path: TestResults/*.trx
+          if-no-files-found: warn

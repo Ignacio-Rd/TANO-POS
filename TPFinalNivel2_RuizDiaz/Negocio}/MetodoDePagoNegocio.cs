@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio;
 using Negocios;
+using Negocio_.Calculos;
 
 
 namespace Negocio_
 {
-    public class MetodoDePagoNegocio
+    public class MetodoDePagoNegocio : IPorcentajeMetodoPago
     {
 
         public List<Metodo_de_pago> Listametodo()
@@ -154,45 +155,8 @@ namespace Negocio_
 
         public decimal Elegir_metodopago(decimal precio, string metodo)
         {
-            decimal porcentaje = 0;
-
-
-            if (!string.IsNullOrEmpty(metodo))
-            {
-                AccesoDATOS datos = new AccesoDATOS();
-
-                try
-                {
-                    datos.SetearConsulta("select porcentaje from metodos_de_pago where metodo_pago = @metodo");
-                    datos.setearParametro("@metodo", metodo);
-
-                    datos.EjecutarLectura();
-
-
-                    if (datos.Lector.Read())
-                    {
-                        porcentaje = (decimal)datos.Lector["porcentaje"];
-                    }
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-                finally
-                {
-                    datos.CerrarConexion();
-                }
-
-                precio += precio * (porcentaje / 100);
-
-                return precio;
-
-
-            }
-
-            return precio;
+            // El porcentaje se lee de la base (ObtenerPorcentaje) y la cuenta vive en ServicioCobro.
+            return new ServicioCobro(this).AplicarRecargo(precio, metodo);
         }
 
 
