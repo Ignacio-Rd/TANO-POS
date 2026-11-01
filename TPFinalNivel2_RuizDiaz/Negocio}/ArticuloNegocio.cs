@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Globalization;
 using Dominio;
 using Negocio_;
 using Negocio_.Calculos;
@@ -245,7 +246,13 @@ namespace Negocios
             try
             {
 
-                datos.SetearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, Stock, PrecioCosto) values ('" + nuevo.codigo + "','" + nuevo.Nombre + "','" + nuevo.Descripcion + "', @idMarca, @idCategoria, @Precio, @stock, @Preciocosto )");
+                datos.SetearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, Stock, PrecioCosto) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @Precio, @stock, @Preciocosto)");
+
+                // Antes estos tres valores se pegaban en el SQL: un apóstrofe (D'Onofrio) lo rompía y permitía inyección.
+                // El "?? ''" mantiene el comportamiento anterior: un valor nulo se guardaba como texto vacío.
+                datos.setearParametro("@codigo", nuevo.codigo ?? "");
+                datos.setearParametro("@nombre", nuevo.Nombre ?? "");
+                datos.setearParametro("@descripcion", nuevo.Descripcion ?? "");
 
                 datos.setearParametro("@idMarca", nuevo.Marca.Id);
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
@@ -313,6 +320,28 @@ namespace Negocios
 
 
 
+        // "%", "_" y "[" tienen significado especial dentro de un LIKE: se escapan para que se busquen como texto común.
+        private static string EscaparLike(string texto)
+        {
+            if (string.IsNullOrEmpty(texto))
+                return "";
+
+            return texto.Replace("[", "[[]").Replace("%", "[%]").Replace("_", "[_]");
+        }
+
+        // Acepta "100.5" (como antes) y también "100,5". Cualquier otra cosa se rechaza antes de tocar la base.
+        private static decimal ParsearPrecio(string texto)
+        {
+            decimal precio;
+            const NumberStyles estilo = NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint;
+
+            if (decimal.TryParse(texto, estilo, CultureInfo.InvariantCulture, out precio) ||
+                decimal.TryParse(texto, estilo, CultureInfo.CurrentCulture, out precio))
+                return precio;
+
+            throw new ArgumentException("El precio a filtrar no es un número válido: '" + texto + "'.", nameof(texto));
+        }
+
         public List<Articulos> filtrar(string campo, string criterio, string filtro)
         {
 
@@ -325,81 +354,28 @@ namespace Negocios
                 string consulta = "select Codigo, Nombre, A.Descripcion Descripcion, ImagenUrl, " +
                     "Precio, PrecioCosto, C.Descripcion Tipo, M.Descripcion Marca, A.IdMarca, A.IdCategoria, A.Id, Stock from ARTICULOS A, CATEGORIAS C, MARCAS M where IdMarca = M.Id and IdCategoria = C.Id and ";
 
+                // El texto que escribe el usuario NUNCA se pega en el SQL: viaja como parámetro (@filtro).
                 if (campo == "Precio ")
                 {
+                    string operador = criterio == "Mayor a" ? ">" : criterio == "Menor a" ? "<" : "=";
 
-                    switch (criterio)
-                    {
-                        case "Mayor a":
-                            consulta += " Precio > " + filtro;
-                            break;
-                        case "Menor a":
-                            consulta += " Precio < " + filtro;
-                            break;
-                        default:
-                            consulta += " Precio = " + filtro;
-                            break;
-                    }
-                }
-                else if (campo == "Código")
-                {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "Codigo like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "Codigo like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += "Codigo like '%" + filtro + "%'";
-                            break;
-                    }
-                }
-                else if (campo == "Nombre")
-                {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "Nombre like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "Nombre like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += "Nombre like '%" + filtro + "%'";
-                            break;
-                    }
-                }
-                else if (campo == "Marca")
-                {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "M.Descripcion like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "M.Descripcion like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += "M.Descripcion like '%" + filtro + "%'";
-                            break;
-                    }
+                    consulta += " Precio " + operador + " @filtro";
+                    datos.setearParametro("@filtro", ParsearPrecio(filtro));
                 }
                 else
                 {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "C.Descripcion like '" + filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "C.Descripcion like '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += "C.Descripcion like '%" + filtro + "%'";
-                            break;
-                    }
+                    string columna = campo == "Código" ? "Codigo"
+                                   : campo == "Nombre" ? "Nombre"
+                                   : campo == "Marca" ? "M.Descripcion"
+                                   : "C.Descripcion";
+
+                    string texto = EscaparLike(filtro);
+                    string patron = criterio == "Comienza con" ? texto + "%"
+                                  : criterio == "Termina con" ? "%" + texto
+                                  : "%" + texto + "%";
+
+                    consulta += columna + " like @filtro";
+                    datos.setearParametro("@filtro", patron);
                 }
 
                 datos.SetearConsulta(consulta);
