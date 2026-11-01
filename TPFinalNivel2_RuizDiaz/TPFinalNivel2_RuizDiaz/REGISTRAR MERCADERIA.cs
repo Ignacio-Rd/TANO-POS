@@ -18,6 +18,7 @@ namespace TPFinalNivel2_RuizDiaz
         public PAGAR_A_PROVEEDOR()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void button2_Click(object sender, EventArgs e)

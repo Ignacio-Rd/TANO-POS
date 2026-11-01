@@ -20,6 +20,7 @@ namespace TPFinalNivel2_RuizDiaz
         public CUANTO_SE_VENDIÓ_POR_PRODUCTO()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             // Cbx_Productos.DataSource = negocio.ListarArticulo();

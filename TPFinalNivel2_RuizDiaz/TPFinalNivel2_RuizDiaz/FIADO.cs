@@ -28,6 +28,7 @@ namespace TPFinalNivel2_RuizDiaz
         public FIADO(decimal montoTotal, decimal subtotal, List<Articulos> lista, int idMetodo, string nombreMetodo, int idventa)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.montoActualCompra = montoTotal;
             // Cargamos el monto de la compra actual en el TextBox para que ya aparezca
             txtSumaDeuda.Text = montoActualCompra.ToString("0.00");
@@ -109,21 +110,23 @@ namespace TPFinalNivel2_RuizDiaz
 
 
 
+        private bool _guardando;
+
         private void BtnFiar_Click(object sender, EventArgs e)
         {
+            if (_guardando)
+                return;   // un doble clic / doble Enter no debe fiar dos veces
+
             if (cboNombreDeudor.SelectedItem == null)
             {
                 MessageBox.Show("Debe seleccionar un deudor.");
                 return;
             }
+            _guardando = true;
             try
             {
-                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
                 VentaNegocio negocio = new VentaNegocio();
                 Cliente seleccionado = (Cliente)cboNombreDeudor.SelectedItem;
-
-                Ventas ventaFiada = new Ventas();
-                ventaFiada.Fecha = DateTime.Now;
 
                 if (!decimal.TryParse(txtSumaDeuda.Text, out decimal montoAFiar))
                 {
@@ -131,47 +134,29 @@ namespace TPFinalNivel2_RuizDiaz
                     return;
                 }
 
-                ventaFiada.Total = montoAFiar;
-                ventaFiada.metododepago = new Metodo_de_pago();
-                ventaFiada.metododepago.id = 11; // ID de FIADO
+                // Venta, líneas, descuento de stock y detalle del deudor en UNA sola transacción:
+                // si algo falla no queda ni la deuda ni el stock a medias.
+                negocio.RegistrarVentaCompleta(
+                    _listaArticulos,
+                    IdsMetodoPago.Fiado,
+                    _nombreMetodo,
+                    _subtotalSinRecargo,
+                    montoAFiar,
+                    seleccionado.Id);
 
-                // --- CAMBIO CLAVE: Capturamos el ID de la venta que se acaba de guardar ---
-                int idRecienCreado = negocio.RegistrarVenta(ventaFiada, seleccionado.Id);
-
-                Venta_Por_Producto_Negocio vppNegocio = new Venta_Por_Producto_Negocio();
-
-                var productosAgrupados = _listaArticulos.GroupBy(x => x.codigo)
-                                                      .Select(g => new { Codigo = g.Key, Total = g.Count() });
-
-                foreach (var item in productosAgrupados)
-                {
-                    articuloNegocio.Descontar_Stock(item.Codigo, item.Total);
-                }
-
-                // Ahora usamos idRecienCreado en lugar de ID
-                if (idRecienCreado > 0)
-                {
-                    vppNegocio.Agregar_Venta_Producto(
-                        _listaArticulos,
-                        DateTime.Now,
-                        idRecienCreado, // <--- Aquí usamos el ID real de la base de datos
-                        _subtotalSinRecargo,
-                        _nombreMetodo,
-                        totalacum
-                    );
-                }
-
-
-                    // Guardar detalle en DETALLE_COMPRAS_FIADO
-                    vppNegocio.GuardarDetalleFiado(_listaArticulos, idRecienCreado);
-
-                    MessageBox.Show($"¡Venta fiada registrada con éxito!");
+                MessageBox.Show($"¡Venta fiada registrada con éxito!");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al registrar el fiado: " + ex.Message);
+                RegistroErrores.Registrar(ex, "Error al registrar el fiado");
+                MessageBox.Show("No se pudo registrar el fiado. No se guardó nada (ni la deuda ni el stock), podés reintentar." +
+                                Environment.NewLine + Environment.NewLine + "Detalle: " + ex.Message);
+            }
+            finally
+            {
+                _guardando = false;
             }
         }
         private void btnNuevoDeudor_Click(object sender, EventArgs e)

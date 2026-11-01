@@ -23,12 +23,12 @@ namespace TPFinalNivel2_RuizDiaz
         public AltaArticulo()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.KeyPreview = true;
             txtCodigo.Multiline = false;
             txtCodigo.AcceptsReturn = false;
 
-            // Asignar eventos
-            txtCodigo.KeyDown += txtCodigo_KeyDown_1;
+            // Asignar eventos (txtCodigo_KeyDown_1 ya está suscripto en el diseñador: hacerlo acá repetía la búsqueda del código)
             txtNombre.KeyDown += AltaArticulo_KeyDown;
             txtDescripcion.KeyDown += AltaArticulo_KeyDown;
             cbxMarcas.KeyDown += AltaArticulo_KeyDown;
@@ -49,6 +49,7 @@ namespace TPFinalNivel2_RuizDiaz
         public AltaArticulo(Dominio.Articulos articulo)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.articulo = articulo;
             Text = "Modificar Articulo";
         }

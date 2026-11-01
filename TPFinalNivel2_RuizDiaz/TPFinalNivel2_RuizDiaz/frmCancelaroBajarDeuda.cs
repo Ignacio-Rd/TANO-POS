@@ -22,12 +22,27 @@ namespace TPFinalNivel2_RuizDiaz
         public frmCancelaroBajarDeuda(string Nombre, decimal monto, int id)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             NombreDeudor = Nombre;
             montoDeudor = monto;
             idDeudor = id;
 
-            lblDeuda.Text = montoDeudor.ToString();
+            // Nombre, "DEBE:" e importe iban en posiciones fijas y un nombre largo pisaba al resto:
+            // ahora se acomodan en fila según el ancho real de cada texto.
+            lblNombreDeudor.SizeChanged += (s, e) => AcomodarEncabezado();
+            lblDeuda.SizeChanged += (s, e) => AcomodarEncabezado();
+
+            lblDeuda.Text = montoDeudor.ToString("N2");
             lblNombreDeudor.Text = NombreDeudor;
+            AcomodarEncabezado();
+        }
+
+        private void AcomodarEncabezado()
+        {
+            const int margen = 26;
+            lblNombreDeudor.Left = margen;
+            label1.Left = lblNombreDeudor.Right + 10;     // "DEBE:"
+            lblDeuda.Left = label1.Right + 10;
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)

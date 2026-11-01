@@ -29,6 +29,7 @@ namespace TPFinalNivel2_RuizDiaz
             deudaAProveedor = Deuda;
 
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void cargar()

@@ -18,6 +18,7 @@ namespace TPFinalNivel2_RuizDiaz
         public CargarProveedor()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)

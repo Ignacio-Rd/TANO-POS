@@ -21,6 +21,7 @@ namespace TPFinalNivel2_RuizDiaz
         public BtnAgregar()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
 
@@ -28,6 +29,7 @@ namespace TPFinalNivel2_RuizDiaz
         public BtnAgregar(int id_metodo, string metodo_pago, decimal porcentaje)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             id_metodopago = id_metodo;
             metodopago = metodo_pago;
             txtMetodoDePago.Text = metodo_pago;

@@ -30,6 +30,7 @@ namespace TPFinalNivel2_RuizDiaz
         public VerInformeEnPantalla()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
 

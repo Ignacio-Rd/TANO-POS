@@ -158,6 +158,21 @@
     <Compile Include="FormularioPrincipal.Designer.cs">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioPrincipal.Interfaz.cs">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diseno\BotonPlano.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Diseno\Estilizador.cs" />
+    <Compile Include="Diseno\ItemMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Diseno\TarjetaPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Diseno\Tema.cs" />
     <Compile Include="formas de pago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +221,14 @@
     <Compile Include="REGISTRAR MERCADERIA.Designer.cs">
       <DependentUpon>REGISTRAR MERCADERIA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Auditoria\PedirMotivoEliminacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auditoria\VentasEliminadasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Infraestructura\InstanciaUnica.cs" />
+    <Compile Include="Infraestructura\ManejadorErrores.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REGISTRADORA DE COMPRAS.cs">
@@ -214,8 +237,15 @@
     <Compile Include="REGISTRADORA DE COMPRAS.Designer.cs">
       <DependentUpon>REGISTRADORA DE COMPRAS.cs</DependentUpon>
     </Compile>
+    <Compile Include="REGISTRADORA DE COMPRAS.Diseno.cs">
+      <DependentUpon>REGISTRADORA DE COMPRAS.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="TOTAL A COBRAR.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TOTAL A COBRAR.Diseno.cs">
+      <DependentUpon>TOTAL A COBRAR.cs</DependentUpon>
     </Compile>
     <Compile Include="TOTAL A COBRAR.Designer.cs">
       <DependentUpon>TOTAL A COBRAR.cs</DependentUpon>

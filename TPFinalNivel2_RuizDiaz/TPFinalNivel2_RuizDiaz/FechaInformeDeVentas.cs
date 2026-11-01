@@ -27,6 +27,7 @@ namespace TPFinalNivel2_RuizDiaz
         public FechaInformeDeVentas()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void FechaInformeDeVentas_Load(object sender, EventArgs e)

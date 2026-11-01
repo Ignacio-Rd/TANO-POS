@@ -27,6 +27,7 @@ namespace TPFinalNivel2_RuizDiaz
         public VerDetalleCompra(int idcompra, decimal monto)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
 
             IdCompra = idcompra;
 

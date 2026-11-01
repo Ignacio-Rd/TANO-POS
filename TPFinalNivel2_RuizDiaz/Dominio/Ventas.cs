@@ -21,5 +21,10 @@ namespace Dominio
 
         public int? IdCliente { get; set; }
 
+        // Las listas por fecha mezclan ventas con cobros de deudores (tablas distintas, ids que se pueden repetir).
+        // Un cobro NO es una venta y no se puede borrar como tal.
+        [System.ComponentModel.Browsable(false)]
+        public bool EsCobroDeuda { get; set; }
+
     }
 }

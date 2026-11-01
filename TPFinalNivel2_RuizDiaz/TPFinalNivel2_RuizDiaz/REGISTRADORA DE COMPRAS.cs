@@ -42,6 +42,7 @@ namespace TPFinalNivel2_RuizDiaz
         {
             InitializeComponent();
             lbl_precio.Text = "0";
+            AplicarDisenioModerno();
         }
 
 
@@ -91,7 +92,7 @@ namespace TPFinalNivel2_RuizDiaz
                 {
                     // SI SE COMPLETÓ LA VENTA: Limpiamos todo
                     total_acumulado = 0;
-                    lbl_precio.Text = "0";
+                    lbl_precio.Text = 0m.ToString("C");
                     listaArticulos.Clear();
                     DgvRegistradora.DataSource = null;
                     cbx_metododepago.SelectedIndex = 0;

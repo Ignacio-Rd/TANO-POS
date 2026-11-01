@@ -41,6 +41,7 @@ namespace TPFinalNivel2_RuizDiaz
         public ENTRADA_DE_MERCADERIA(string nombre, int id)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             nombreProveedor = nombre;
             idProveedor = id;
             TotalCompra = 0;

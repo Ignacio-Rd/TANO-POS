@@ -24,6 +24,7 @@ namespace TPFinalNivel2_RuizDiaz
         public ConsultarCompraProveedores()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void BtnFiltrarFecha_Click(object sender, EventArgs e)

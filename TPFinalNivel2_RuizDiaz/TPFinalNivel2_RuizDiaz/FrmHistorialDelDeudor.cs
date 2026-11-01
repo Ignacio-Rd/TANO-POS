@@ -20,6 +20,7 @@ namespace TPFinalNivel2_RuizDiaz
         public DetalleDeCompra(Cliente clienteRecibido)
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
             this.cliente = clienteRecibido;
             this.Text = "Historial de " + cliente.Nombre;
         }

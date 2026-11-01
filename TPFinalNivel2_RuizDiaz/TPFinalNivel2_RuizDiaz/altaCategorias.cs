@@ -19,6 +19,7 @@ namespace TPFinalNivel2_RuizDiaz
         public altaCategorias()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private List<Dominio.categoria> listaCategoria = new List<Dominio.categoria>();

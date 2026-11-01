@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace Negocio_
 {
-    public class VentaNegocio
+    public partial class VentaNegocio
     {
 
         public List<Ventas> Listar_ventas()
@@ -163,7 +163,7 @@ namespace Negocio_
                 // Usamos UNION ALL para juntar Ventas Reales + Cobros de Deudores
                 string consulta = @"
             -- 1. Traer Ventas que NO sean FIADO
-            SELECT V.Id, V.Fecha, V.Total, V.id_metodo, M.metodo_pago AS Metodopago 
+            SELECT V.Id, V.Fecha, V.Total, V.id_metodo, M.metodo_pago AS Metodopago, CAST(0 AS bit) AS EsCobro 
             FROM Ventas V 
             INNER JOIN metodos_de_pago M ON V.id_metodo = M.id_metodo 
             WHERE CONVERT(date, V.Fecha) = @fecha 
@@ -172,7 +172,7 @@ namespace Negocio_
             UNION ALL
 
             -- 2. Traer Cobros de Deudores (como si fueran una venta más de ingreso)
-            SELECT P.Id, P.Fecha, P.Monto as Total, P.IdMetodoPago, M.metodo_pago AS Metodopago
+            SELECT P.Id, P.Fecha, P.Monto as Total, P.IdMetodoPago, M.metodo_pago AS Metodopago, CAST(1 AS bit) AS EsCobro
             FROM PAGOS_DEUDORES P
             INNER JOIN metodos_de_pago M ON P.IdMetodoPago = M.id_metodo
             WHERE CONVERT(date, P.Fecha) = @fecha
@@ -192,6 +192,7 @@ namespace Negocio_
                     aux.Id_metodo = (int)datos.Lector["id_metodo"];
                     aux.metododepago = new Metodo_de_pago();
                     aux.metododepago.MetodoPago = (string)datos.Lector["Metodopago"];
+                    aux.EsCobroDeuda = (bool)datos.Lector["EsCobro"];
 
                     // Opcional: Podés marcar los cobros de deuda con un texto especial si querés
                     // if (datos.Lector["Metodopago"].ToString() == "Efectivo") { ... }
@@ -212,37 +213,6 @@ namespace Negocio_
         
 
 
-        public void EliminarVenta(int Id)
-        {
-            AccesoDATOS datos = new AccesoDATOS();
-
-            try
-            {
-                
-
-                // Iniciamos la transacción (esto requiere que tu clase AccesoDATOS 
-                // permita gestionar el objeto SqlTransaction o que uses un bloque TransactionScope)
-                // Aquí te muestro la lógica lógica pura de SQL que es más robusta:
-
-                datos.SetearConsulta("BEGIN TRANSACTION; " +
-                                     "DELETE FROM Venta_Por_Producto WHERE idVenta = @id; " +
-                                     "DELETE FROM VENTAS WHERE Id = @id; " +
-                                     "COMMIT TRANSACTION;");
-
-                datos.setearParametro("@id", Id);
-                datos.EjecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                // Si algo falla, podrías intentar un ROLLBACK aquí si manejas el objeto Transaction
-                throw new Exception("No se pudo eliminar la venta y sus detalles: " + ex.Message);
-            }
-            finally
-            {
-                datos.CerrarConexion();
-            }
-        }
-
         public List<Ventas> ConsultaRango(DateTime horainicio, DateTime horafin, out decimal deudaHistorica)
         {
             List<Ventas> lista = new List<Ventas>();
@@ -254,7 +224,7 @@ namespace Negocio_
                 // Usamos UNION ALL para juntar Ventas Reales + Cobros de Deudores en el rango horario
                 string consulta = @"
             -- 1. Traer Ventas del rango
-            SELECT V.Id, V.Fecha, V.Total, V.id_metodo, M.metodo_pago AS Metodopago 
+            SELECT V.Id, V.Fecha, V.Total, V.id_metodo, M.metodo_pago AS Metodopago, CAST(0 AS bit) AS EsCobro 
             FROM Ventas V 
             INNER JOIN metodos_de_pago M ON V.id_metodo = M.id_metodo 
             WHERE V.Fecha BETWEEN @HoraInicio AND @HoraFin
@@ -262,7 +232,7 @@ namespace Negocio_
             UNION ALL
 
             -- 2. Traer Cobros de Deudores del rango
-            SELECT P.Id, P.Fecha, P.Monto as Total, P.IdMetodoPago, M.metodo_pago AS Metodopago
+            SELECT P.Id, P.Fecha, P.Monto as Total, P.IdMetodoPago, M.metodo_pago AS Metodopago, CAST(1 AS bit) AS EsCobro
             FROM PAGOS_DEUDORES P
             INNER JOIN metodos_de_pago M ON P.IdMetodoPago = M.id_metodo
             WHERE P.Fecha BETWEEN @HoraInicio AND @HoraFin
@@ -282,6 +252,7 @@ namespace Negocio_
                     aux.Total = (decimal)datos.Lector["Total"];
                     aux.Id_metodo = (int)datos.Lector["id_metodo"];
                     aux.metododepago = new Metodo_de_pago { MetodoPago = (string)datos.Lector["Metodopago"] };
+                    aux.EsCobroDeuda = (bool)datos.Lector["EsCobro"];
                     lista.Add(aux);
                 }
                 datos.Lector.Close();

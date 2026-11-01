@@ -20,6 +20,7 @@ namespace TPFinalNivel2_RuizDiaz
         public Form1()
         {
             InitializeComponent();
+            Diseno.Estilizador.Aplicar(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
