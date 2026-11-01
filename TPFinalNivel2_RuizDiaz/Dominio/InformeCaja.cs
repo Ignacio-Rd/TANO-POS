@@ -32,10 +32,7 @@ namespace Dominio
                 return EfectivoVentas + digital;
                 // Nota: EfectivoVentas ya incluye CobroDeudores y resta PagosProveedores
             }
-            set { }
-
-            
-        }
+            }
 
     }
 

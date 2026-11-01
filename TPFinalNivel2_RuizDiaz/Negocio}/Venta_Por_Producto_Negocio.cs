@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Negocios;
 using Negocio_;
+using Negocio_.Calculos;
 using Dominio;
 using System.Data;
 using System.Data.SqlClient;
@@ -62,9 +63,8 @@ namespace Negocio_
         public TICKET Agregar_Venta_Producto(List<Articulos> producto_Vendidos, DateTime fecha, int idVenta, decimal TOTAL, string impuestos, decimal TOTALFINAL)
         {
 
-            if (producto_Vendidos != null || producto_Vendidos.Count > 0)
-            {
-            }
+            if (producto_Vendidos == null)
+                throw new ArgumentNullException(nameof(producto_Vendidos));
             Articulos art = new Articulos();
 
             ArticuloNegocio artNegocio = new ArticuloNegocio();
@@ -236,13 +236,10 @@ namespace Negocio_
                     decimal precioBase = Convert.ToDecimal(datos.Lector["PrecioUnitario"]);
                     decimal importeBase = Convert.ToDecimal(datos.Lector["ImporteLinea"]);
 
-                    // Calculamos
-                    decimal montoRecargo = importeBase * (porcentaje / 100);
-
                     // ASIGNACIÓN AL OBJETO (Asegurate que estos nombres coincidan con tu clase Dominio)
-                    aux.Recargo = Math.Round(montoRecargo, 2);
-                    aux.PrecioUnitario = Math.Round(precioBase, 2);
-                    aux.ImporteLinea = Math.Round(importeBase + montoRecargo, 2);
+                    aux.Recargo = CalculadoraVenta.RecargoDeLinea(importeBase, porcentaje);
+                    aux.PrecioUnitario = Math.Round(precioBase, 2, MidpointRounding.AwayFromZero);
+                    aux.ImporteLinea = CalculadoraVenta.ImporteDeLineaConRecargo(importeBase, porcentaje);
 
                     // UN SOLO ADD
                     productos.Add(aux);
@@ -449,7 +446,7 @@ SELECT
                     informe.GastosVariosEfectivo = (decimal)datos.Lector["GastosVariosEfectivo"];
 
                     // Neto efectivo = Entradas - Proveedores - Gastos Varios
-                    informe.EfectivoVentas = entradasEfectivo - informe.PagosAProveedores - informe.GastosVariosEfectivo;
+                    informe.EfectivoVentas = ConciliacionCaja.EfectivoNeto(entradasEfectivo, informe.PagosAProveedores, informe.GastosVariosEfectivo);
                     informe.CobroDeudores = (decimal)datos.Lector["CobrosTotales"];
                     informe.VentasFiadasNuevas = (decimal)datos.Lector["FiadoNuevo"];
                     informe.SaldoHistorico = (decimal)datos.Lector["SaldoTotalReal"];
@@ -513,7 +510,7 @@ AND (
                     informe.DesgloseMetodos.Add(new MetodoResumen
                     {
                         Nombre = datos.Lector["metodo_pago"].ToString(),
-                        Total = ventas + cobros - proveedores - gastos,  // Neto
+                        Total = ConciliacionCaja.NetoMetodo(ventas, cobros, proveedores, gastos),  // Neto
                         PagosProveedores = proveedores,
                         GastosVarios = gastos,
                         FondoInicial = fondo
@@ -532,12 +529,7 @@ AND (
                 datos.Lector.Close();
                 datos.CerrarConexion();
 
-                // =============================================
-                // CALCULAR TOTAL GENERAL RECAUDADO
-                // Efectivo neto + suma de netos digitales
-                // =============================================
-                informe.TotalGeneralRecaudado = informe.EfectivoVentas
-                    + informe.DesgloseMetodos.Sum(m => m.Total);
+                // El total general recaudado lo calcula InformeCaja.TotalGeneralRecaudado (propiedad de solo lectura).
 
                 return informe;
             }

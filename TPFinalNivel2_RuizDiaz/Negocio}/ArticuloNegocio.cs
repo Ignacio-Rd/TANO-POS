@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
+using Negocio_;
+using Negocio_.Calculos;
 using Negocios;
 
 namespace Negocios
@@ -22,7 +24,7 @@ namespace Negocios
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB_RECUPERADA; integrated security = true";
+                conexion.ConnectionString = ConexionConfig.Cadena;
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select Codigo, Nombre, A.Descripcion Descripcion, ImagenUrl, Precio, PrecioCosto, " +
                     "C.Descripcion Tipo, M.Descripcion Marca, A.IdMarca, A.IdCategoria, A.Id IdArticulo, Stock from ARTICULOS A, CATEGORIAS C, MARCAS M where IdMarca = M.Id and IdCategoria = C.Id ORDER BY A.Nombre ASC";
@@ -443,6 +445,10 @@ namespace Negocios
 
                 throw;
             }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
         public void Eliminar(int Id)
@@ -531,7 +537,8 @@ namespace Negocios
 
         }
 
-        public void Descontar_Stock(string producto, int cantidad) // Agregamos parámetro cantidad
+        // Devuelve false si no había stock suficiente (en ese caso no se descuenta nada y queda registrado en log_errores.txt).
+        public bool Descontar_Stock(string producto, int cantidad)
         {
             AccesoDATOS datos = new AccesoDATOS();
             try
@@ -540,7 +547,12 @@ namespace Negocios
                 datos.SetearConsulta("UPDATE ARTICULOS SET Stock = Stock - @cantidad WHERE Codigo = @codigo AND Stock >= @cantidad");
                 datos.setearParametro("@codigo", producto);
                 datos.setearParametro("@cantidad", cantidad);
-                datos.EjecutarAccion();
+                bool descontado = datos.EjecutarAccion() > 0;
+
+                if (!descontado)
+                    RegistroErrores.Registrar("Stock insuficiente: se intentó descontar " + cantidad + " unidad(es) del código '" + producto + "' y no se descontó nada.", "Descuento de stock");
+
+                return descontado;
             }
             catch (Exception ex) { throw ex; }
             finally { datos.CerrarConexion(); }
@@ -636,16 +648,23 @@ namespace Negocios
             List<Articulos> lista = new List<Articulos>();
 
             datos.SetearConsulta("select Nombre from ARTICULOS;");
-            datos.EjecutarLectura();
-
-            while (datos.Lector.Read())
+            try
             {
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
                 Articulos aux = new Articulos();
                 aux.Nombre = (string)datos.Lector["Nombre"];
                 lista.Add(aux);
             }
 
-            return lista;
+                return lista;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
         public List<Articulos> buscarmarca(string Marca)
@@ -805,27 +824,7 @@ namespace Negocios
                 AccesoDATOS datos = new AccesoDATOS();
 
                 // La lógica de actualización de precios es la misma
-                switch (tipoAjuste)
-                {
-                    case "PORC_COSTOVENTA":
-                        query = "UPDATE Articulos SET PrecioCosto *= (1 + @val/100), Precio *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_COSTOVENTA":
-                        query = "UPDATE Articulos SET PrecioCosto += @val, Precio += @val";
-                        break;
-                    case "PORC_VENTA":
-                        query = "UPDATE Articulos SET Precio *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_VENTA":
-                        query = "UPDATE Articulos SET Precio += @val";
-                        break;
-                    case "PORC_COSTO":
-                        query = "UPDATE Articulos SET PrecioCosto *= (1 + @val/100)";
-                        break;
-                    case "CIFRA_COSTO":
-                        query = "UPDATE Articulos SET PrecioCosto += @val";
-                        break;
-                }
+                query = AjusteDePrecios.SentenciaUpdate(tipoAjuste);
 
                 // El cambio clave: filtramos por la columna Codigo
                 query += " WHERE Codigo = @codigo";
